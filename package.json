@@ -1,0 +1,35 @@
+{
+  "name": "bodega",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx hardhat compile",
+    "deploy:binanceTestnet": " npx hardhat run --network binanceTestnet scripts/deploy.js",
+    "deploy:ropsten": " npx hardhat run --network ropsten scripts/deploy.js",
+    "deploy": " npx hardhat run --network binance scripts/deploy.js",
+    "flat": "npx hardhat flatten > flat.sol",
+    "node": "npx hardhat node",
+    "test": "npx hardhat test",
+    "verify": "",
+    "verify:binanceTestnet": "npx hardhat verify --network binanceTestnet 0x8DC6B87Bd35Ebb7cec70de2fBaD1b6a0B6913C53 '0x00000000000000000000000000000000000000000000000000000000000000c8'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/hardhat-upgrades": "^1.9.0",
+    "@openzeppelin/test-helpers": "^0.5.13",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.4.4",
+    "hardhat": "^2.6.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.2.0",
+    "@poanet/solidity-flattener": "^3.0.6"
+  }
+}
