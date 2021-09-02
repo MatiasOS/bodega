@@ -87,7 +87,6 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol@v4.2.0
 
-// 
 
 pragma solidity ^0.8.0;
 
@@ -116,7 +115,6 @@ interface IERC20Metadata is IERC20 {
 
 // File @openzeppelin/contracts/utils/Context.sol@v4.2.0
 
-// 
 
 pragma solidity ^0.8.0;
 
@@ -143,7 +141,6 @@ abstract contract Context {
 
 // File @openzeppelin/contracts/token/ERC20/ERC20.sol@v4.2.0
 
-// 
 
 pragma solidity ^0.8.0;
 
@@ -499,7 +496,6 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 
 // File @openzeppelin/contracts/access/Ownable.sol@v4.2.0
 
-// 
 
 pragma solidity ^0.8.0;
 
@@ -572,11 +568,14 @@ abstract contract Ownable is Context {
 
 // File contracts/Bodega.sol
 
-//
 pragma solidity ^0.8.0;
 
 
 contract Bodega is ERC20, Ownable {
+
+    event Claim(address claimer,uint256 amount);
+    event Burn(address burner,uint256 amount);
+
     constructor(uint256 initialSupply) ERC20("BODEGA-TEST", "BDG21-TEST") {
         _mint(_msgSender(), initialSupply);
     }
@@ -587,5 +586,15 @@ contract Bodega is ERC20, Ownable {
 
     function mintTo(uint256 supply, address to) onlyOwner() public {
         _mint(to, supply);
+    }
+
+    function claim(uint256 amount) public {
+        _burn(_msgSender(), amount);
+        emit Claim(_msgSender(), amount);
+    }
+
+    function burn(uint256 amount) onlyOwner() public {
+         _burn(_msgSender(), amount);
+        emit Burn(_msgSender(), amount);
     }
 }
